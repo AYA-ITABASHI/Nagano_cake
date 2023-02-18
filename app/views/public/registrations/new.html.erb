@@ -39,7 +39,7 @@
   <th>
    <div class="field">
     <%= f.label "郵便番号（ハイフンなし）" %>
-    <%= f.email_field :postal_code %>
+    <%= f.email_field :postal_code, placeholder: "0000000" %>
    </div>
    </th>
   </tr>
@@ -48,7 +48,7 @@
    <th>
    <div class="field">
     <%= f.label "住所" %>
-    <%= f.email_field :adress %>
+    <%= f.email_field :adress, placeholder: "東京都渋谷区代々木神園町0-0" %>
    </div>
    </th>
   </tr>
@@ -57,7 +57,7 @@
    <th>
     <div class="field">
      <%= f.label "電話番号(ハイフンなし）" %>
-     <%= f.email_field :telephone_number %>
+     <%= f.email_field :telephone_number, placeholder: "00000000000" %>
     </div>
    </th>
   </tr>
@@ -96,7 +96,8 @@
    </div>
    </th>
   </tr>
-
+ </table>
 <% end %>
 
-<%= render "public/shared/links" %>
+ <h3>既に登録済みの方</h3>
+<a href="/customers/sign_in">こちら</a>  からログインしてください。

@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'cart_items/index'
-  end
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
    sessions: "admin/sessions"
   }
 
@@ -13,7 +10,7 @@ Rails.application.routes.draw do
   }
 
   root to:'public/homes#top'
-  get 'public/homes/about' => 'public/homes#about', as:'about'
- 
+  get '/about' => 'public/homes#about', as:'about'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
