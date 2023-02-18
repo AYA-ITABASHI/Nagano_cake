@@ -4,8 +4,32 @@
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :last_name %><br />
+    <%= f.label "姓" %><br />
     <%= f.email_field :last_name %>
+  </div>
+   <div class="field">
+    <%= f.label "名" %><br />
+    <%= f.email_field :first_name %>
+  </div>
+   <div class="field">
+    <%= f.label "姓カナ" %><br />
+    <%= f.email_field :last_name_kana %>
+  </div>
+   <div class="field">
+    <%= f.label "名カナ" %><br />
+    <%= f.email_field :first_name_kana %>
+  </div>
+   <div class="field">
+    <%= f.label "郵便番号（ハイフンなし）" %><br />
+    <%= f.email_field :postal_code %>
+  </div>
+   <div class="field">
+    <%= f.label "住所" %><br />
+    <%= f.email_field :adress %>
+  </div>
+   <div class="field">
+    <%= f.label "電話番号" %><br />
+    <%= f.email_field :telephone_number %>
   </div>
 
 
