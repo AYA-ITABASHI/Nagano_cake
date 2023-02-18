@@ -12,5 +12,9 @@ Rails.application.routes.draw do
   root to:'public/homes#top'
   get '/about' => 'public/homes#about', as:'about'
 
+  get '/items' => 'public/items#index', as:'items'
+  get '/items/:id' => 'public/items#show', as:'item'
+
+  get 'customers/mypage' => 'public/customers#show', as:'mypage'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
