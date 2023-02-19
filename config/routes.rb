@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get 'items/edit'
   end
   namespace :admin do
-    get 'homes/top' => 'admin/homes#top'
+    root to:'homes#top'
   end
   namespace :public do
     get 'adress/index'
