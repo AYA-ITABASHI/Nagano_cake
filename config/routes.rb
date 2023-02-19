@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   get '/items/:id' => 'public/items#show', as:'item'
 
   get 'customers/mypage' => 'public/customers#show', as:'mypage'
+  get '/cart_items' => 'public/cart_items#index', as:'cart_items'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
