@@ -1,2 +1,57 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<h1>商品新規登録</h1>
+<%= form_with model:Item do |f| %>
+　<table>
+　  <tr>
+　   <th>商品画像</th>
+　   <th>
+　    <div class="field">
+
+　    </div></th>
+　  </tr>
+　  <tr>
+　   <th>商品名</th>
+　   <th>
+　   <div class="field">
+　      <%= f.text_field :name, placeholder:"商品名" %>
+　    </div></th></th>
+　  </tr>
+　  <tr>
+　   <th>商品説明</th>
+　   <th>
+　    <div class="field">
+　      <%= f.text_area :introduction %>
+　    </div>
+　   </th>
+　  </tr>
+　  <tr>
+　   <th>ジャンル</th>
+　   <th>
+　     <div class="field">
+　   <!--< f.select :genre_id, options_from_collection_for_select(Genr.all, :id, :name) %>-->-->
+　     </div>
+　   </th>
+　  </tr>
+　  <tr>
+　   <th>税抜価格</th>
+　   <th>
+　     <div class="field">
+　      <%= f.text_field :price %>
+　    </div>
+　   </th>
+　  </tr>
+　  <tr>
+　   <th>販売ステータス</th>
+　   <th>
+　    <%= f.radio_button :is_activ_method, "true" %>
+      <%= f.label :is_activ_method_true, "販売中" %>
+
+      <%= f.radio_button :is_activ_method, "false" %>
+      <%= f.label :is_activ_method_false, "販売停止中" %>
+　   </th>
+　  </tr>
+　</table>
+
+　  <div class="actions">
+    <%= f.submit "新規登録" %>
+  </div>
+ <% end %>
