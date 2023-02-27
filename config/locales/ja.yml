@@ -23,4 +23,12 @@
           production: "製作中"
           production_completed: "製作完了"
 
+  ja:
+    activerecord:
+      errors:
+        models:
+          customer:
+            attributes:
+              password:
+                blank: "空白です"
 

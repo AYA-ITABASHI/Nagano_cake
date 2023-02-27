@@ -4,7 +4,7 @@
   <th>会員の方はこちらからログイン</th><th></th>
  </tr>
  <tr>
- <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+ <%= form_with model:@customer, url: customer_session_path do |f| %>
   <th>
   <div class="field">
     <%= f.label :email %>

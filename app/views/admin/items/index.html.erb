@@ -1,6 +1,7 @@
 <h1>商品一覧</h1>
 
 <table>
+<thead>
  <tr>
   <th>商品</th>
   <th>商品名</th>
@@ -8,13 +9,25 @@
   <th>ジャンル</th>
   <th>ステータス</th>
  </tr>
- 
- 
+ </thead>
+
+<% @items.each do |item| %>
+<tbody>
  <tr>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
+  <td>
+   <%= image_tag item.get_image(100,100) %>
+  </td>
+  <td>
+   <%= item.name %>
+  </td>
+  <td>
+   <%= item.price %>
+  </td>
+  <td>
+   <%= item.genr %>
+  </td>
   <th></th>
  </tr>
+</tbody>
+<% end %>
 </table>

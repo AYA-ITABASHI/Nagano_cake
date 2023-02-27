@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    get 'customers/index'
+    get'customers'=> 'customers#index'
     get 'customers/edit'
     get 'customers/show'
   end
@@ -10,10 +10,7 @@ Rails.application.routes.draw do
     get 'genres/edit'
   end
   namespace :admin do
-    get 'items'=>'items#index'
-    get 'items/new'
-    get 'items/:id' =>'items#show'
-    get 'items/:id/edit' => 'items#edit'
+    resources :items, only:[:index, :new, :create, :show, :edit]
   end
   namespace :admin do
     root to:'homes#top'
@@ -44,8 +41,10 @@ Rails.application.routes.draw do
   root to:'public/homes#top'
   get '/about' => 'public/homes#about', as:'about'
 
-  get '/items' => 'public/items#index', as:'items'
-  get '/items/:id' => 'public/items#show', as:'item'
+  namespace :public do
+  get 'items' => 'items#index'
+  get 'items/:id' => 'items#show'
+  end
 
   get 'customers/mypage' => 'public/customers#show', as:'mypage'
   get '/cart_items' => 'public/cart_items#index', as:'cart_items'

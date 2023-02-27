@@ -1,5 +1,6 @@
 class Admin::CustomersController < ApplicationController
   def index
+    @customer=Customer.all
   end
 
   def edit
@@ -8,3 +9,5 @@ class Admin::CustomersController < ApplicationController
   def show
   end
 end
+
+
