@@ -5,10 +5,11 @@ Rails.application.routes.draw do
     get 'customers/edit'
     get 'customers/show'
   end
+
   namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
+    resources :genres, only:[:index, :create, :edit]
   end
+
   namespace :admin do
     resources :items, only:[:index, :new, :create, :show, :edit]
   end

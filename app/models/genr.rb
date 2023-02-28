@@ -1,2 +1,0 @@
-class Genr < ApplicationRecord
-end

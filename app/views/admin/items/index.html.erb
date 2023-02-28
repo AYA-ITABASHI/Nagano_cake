@@ -24,10 +24,11 @@
    <%= item.price %>
   </td>
   <td>
-   <%= item.genr %>
+   <%= item.genres.name %>
   </td>
-  <th></th>
+  <th>
+   <%= item.is_active %>
+  </th>
  </tr>
 </tbody>
 <% end %>
-</table>
