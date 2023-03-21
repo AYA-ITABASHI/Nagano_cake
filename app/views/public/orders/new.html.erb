@@ -1,2 +1,8 @@
 <h1>注文情報入力</h1>
 
+<h5>支払方法入力</h5>
+ <% form_with model:@order,url: public_orders_path method: :post do |f| %>
+　<%= f.radio_button :payment_method, "credit_card" %>
+
+ <% end %>
+

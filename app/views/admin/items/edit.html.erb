@@ -1,2 +1,61 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<h3>商品編集</h3>
+<%= form_with model: @item, url: admin_item_path(@item.id) do |f| %>
+
+　<table>
+　  <tr>
+　   <th>商品画像</th>
+　   <th>
+　    <div class="field">
+       <%= f.file_field :image, accept: "image/*" %>
+　    </div></th>
+　  </tr>
+　  <tr>
+　   <th>商品名</th>
+　   <th>
+　   <div class="field">
+　      <%= f.text_field :name, placeholder:"商品名" %>
+　    </div>
+　    </th></th>
+　  </tr>
+　  <tr>
+　   <th>商品説明</th>
+　   <th>
+　    <div class="field">
+　      <%= f.text_area :introduction %>
+　    </div>
+　   </th>
+　  </tr>
+　  <tr>
+　   <th>ジャンル</th>
+　   <th>
+　     <div class="field">
+　   　 <!--< f.select :genre, ['ケーキ', 'キャンディ', '焼き菓子'], {include_blank: '---'} %>-->
+
+　    <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+　     </div>
+　   </th>
+　  </tr>
+　  <tr>
+　   <th>税抜価格</th>
+　   <th>
+　     <div class="field">
+　      <%= f.text_field :price %>円
+　    </div>
+　   </th>
+　  </tr>
+　  <tr>
+　   <th>販売ステータス</th>
+　   <th>
+　    <%= f.radio_button :is_active_method, "販売中" %>
+      <%= f.label :is_activ_method_true, "販売中" %>
+
+      <%= f.radio_button :is_active_method, "販売停止中" %>
+      <%= f.label :is_activ_method_false, "販売停止中" %>
+　   </th>
+　  </tr>
+　</table>
+
+　  <div class="actions">
+    <%= f.submit "変更する" %>
+  </div>
+ <% end %>

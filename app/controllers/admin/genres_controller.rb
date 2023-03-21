@@ -6,13 +6,19 @@ class Admin::GenresController < ApplicationController
 
   def create
     @genres=Genre.new(genre_params)
-    @genres.save
+    @genre.save
     render :index
 
 
   end
 
   def edit
+    @genre=Genre.find(params[:id])
+  end
+
+  def update
+   @genre=Genre.find(params[:id])
+   @genre.update(params.update)
   end
 
 

@@ -1,6 +1,6 @@
 <h2>管理者ログイン</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_with model:Admin, url: admin_session_path do |f| %>
   <div class="field">
     <%= f.label "メールアドレス" %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -11,7 +11,7 @@
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
- 
+
   <div class="actions">
     <%= f.submit "ログイン" %>
   </div>

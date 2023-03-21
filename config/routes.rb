@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    get'customers'=> 'customers#index'
-    get 'customers/edit'
-    get 'customers/show'
+    resources :orders, only:[:show, :update]
   end
+  namespace :admin do
+    resources :customers, only:[:index, :show, :edit, :update
+    ]
+   end
 
   namespace :admin do
     resources :genres, only:[:index, :create, :edit]
   end
 
   namespace :admin do
-    resources :items, only:[:index, :new, :create, :show, :edit]
+    resources :items, only:[:index, :new, :create, :show, :edit, :update]
   end
   namespace :admin do
     root to:'homes#top'
@@ -43,12 +45,17 @@ Rails.application.routes.draw do
   get '/about' => 'public/homes#about', as:'about'
 
   namespace :public do
-  get 'items' => 'items#index'
-  get 'items/:id' => 'items#show'
+   resources :items, only:[:index, :show]
   end
 
-  get 'customers/mypage' => 'public/customers#show', as:'mypage'
-  get '/cart_items' => 'public/cart_items#index', as:'cart_items'
+  namespace :public do
+  get 'customers/mypage' => 'customers#show', as:'mypage'
+  resources :customers, only:[:edit, :update, :unsubscribe, :withdrawal]
+  end
+
+  namespace :public do
+  resources :cart_items, only:[:index, :update, :create, :destroy, :destroy_all]
+  end
 
 
   #post 'orders/confirm' => 'public/orders#confirm'

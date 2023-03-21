@@ -1,0 +1,38 @@
+<h2>商品詳細</h2>
+
+<table>
+
+  <tr>
+   <td>
+    <%= image_tag @item.get_image(100,100) %>
+   </td>
+   <td>
+    <%= @item.name %>
+   </td>
+  </tr>
+  <tr>
+    <th></th>
+    <td>
+     <%= @item.introduction %>
+    </td>
+  </tr>
+    <tr>
+    <th></th>
+    <td>
+     <%= @item.price %>
+    </td>
+  </tr>
+  <%= form_with model: @cart_items, url: public_cart_items_path, method: :post do |f| %>
+    <tr>
+    <th></th>
+     <%= f.hidden_field :customer_id, :value => current_customer.id %>
+     <%= f.hidden_field :item_id, :value => @item.id %>
+    <td>
+     <%= f.select :amount, *[1..10] %>
+    </td>
+    <th>
+     <%= f.submit "カートに入れる" %>
+    </th>
+  </tr>
+  <% end %>
+</table>

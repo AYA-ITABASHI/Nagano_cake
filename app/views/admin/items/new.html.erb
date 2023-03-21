@@ -12,7 +12,7 @@
 　   <th>商品名</th>
 　   <th>
 　   <div class="field">
-　      <%= f.text_field :name, placeholder:"商品名" %>
+　      <%= f.text_field :name, placeholder: "商品名" %>
 　    </div></th></th>
 　  </tr>
 　  <tr>
@@ -27,9 +27,7 @@
 　   <th>ジャンル</th>
 　   <th>
 　     <div class="field">
-　   　 <!--< f.select :genre, ['ケーキ', 'キャンディ', '焼き菓子'], {include_blank: '---'} %>-->
-
-　    <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+　       <%= f.collection_select :genre_id, Genre.all, :id, :name %>
 　     </div>
 　   </th>
 　  </tr>
