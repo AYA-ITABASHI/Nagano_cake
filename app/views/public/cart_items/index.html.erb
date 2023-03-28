@@ -1,9 +1,10 @@
-<h3>ショッピングカート</h3>
+<h3>ショッピングカート</h3><%= link_to "カートを空にする", public_cart_items_destroy_all_path, method: :delete %>
 
 <table>
  <thead>
   <tr>
     <th>商品名</th>
+    <th>単価（税込）</th>
     <th>数量</th>
     <th>小計</th>
     <th></th>
@@ -13,10 +14,22 @@
   <tbody>
    <tr>
     <td><%= cart_item.item.name %></td>
-    <td><%= cart_item.subtotal%></td>
     <td><%= cart_item.item.with_tax_price%></td>
-    <% @合計金額 +=  (cart_item.item.price * 1.1).floor * cart_item.amount %>
-
+    <td>
+     <%= select_button cart_item.amount, *[1..10] %>
+     <%= link_to "変更する", public_cart_items_path, method: :patch %>
+    </td>
+    <td><%= cart_item.subtotal%></td>
+     <% @amount_billed=+ cart_item.subtotal %>
+    <th>
+     <%= link_to "削除する", public_cart_item_path(cart_item.id), method: :delete %>
+    </th>
+   </tr>
+   <tr>
+    <th>合計金額</th>
+    <td>
+     <%= @amount_billed %>
+    </td>
    </tr>
   </tbody>
  <% end %>
