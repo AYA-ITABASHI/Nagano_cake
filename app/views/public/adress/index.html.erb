@@ -1,2 +1,56 @@
-<h1>Public::Adress#index</h1>
-<p>Find me in app/views/public/adress/index.html.erb</p>
+<h2>配送先登録/一覧</h2>
+
+
+<%= form_with model:@adress, url: '/public/adress', method: :post do |f| %>
+
+<table>
+  <tr>
+   <th>郵便番号</th>
+   <td><%= f.text_field :postal_code %></td>
+  </tr>
+  <tr>
+   <th>住所</th>
+   <td> <%= f.text_field :address %> </td>
+  </tr>
+  <tr>
+    <th>宛名</th>
+    <td> <%= f.text_field :name %> </td>
+  </tr>
+  <tr>
+   <th> <%= f.submit "新規登録" %> </th>
+  </tr>
+</table>
+<% end %>
+
+
+
+ <table>
+ <thead>
+ <tr>
+  <th >郵便番号</th>
+  <th >住所 </th>
+  <th>宛名</th>
+  <th></th>
+ </tr>
+ </thead>
+
+ <tbody>
+　<% @adress.each do |adress| %>
+ 　<tr>
+ 　 <td></td>
+ 　  <td><%= adresse %></td>
+    <td><%= adress.name %></td>
+    <td></td>
+    <td><span class="space"><%= link_to "編集", edit_public_adress_path(adress.id) %></td></span>
+
+   </tr>
+　</tbody>
+ <% end %>
+ </table>
+</div>
+
+
+
+
+
+
