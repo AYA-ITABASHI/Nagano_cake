@@ -1,12 +1,12 @@
 class Admin::GenresController < ApplicationController
   def index
-    @genres=Genre.all
-    @genre=Genre.new
+    @genre=Genre.all
+    @genres=Genre.new
   end
 
   def create
     @genres=Genre.new(genre_params)
-    @genre.save
+    @genres.save
     render :index
 
 

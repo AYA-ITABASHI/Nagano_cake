@@ -6,6 +6,6 @@ class Customer < ApplicationRecord
   validates :is_deleted, inclusion: { in: [true, false] }
 
  has_many :cart_items
- 
+ has_many :addresses
 
 end

@@ -19,19 +19,12 @@ Rails.application.routes.draw do
     root to:'homes#top'
   end
   namespace :public do
-    get 'adress/index'
-    get 'adress/edit'
-    get 'adress/create'
-    get 'adress/update'
-    get 'adress/destroy'
+    resources :addresses, only:[:index, :create, :edit, :update, :destroy]  
   end
   namespace :public do
-    get 'orders/new'
-    get 'orders/index'
-    get 'orders/show'
-
-    get 'orders/complete'
+    resources :orders, only:[:new, :index, :show, :complete, :confirm, :create]
   end
+
  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
    sessions: "admin/sessions"
   }

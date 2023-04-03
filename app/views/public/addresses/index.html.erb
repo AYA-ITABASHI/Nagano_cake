@@ -1,7 +1,7 @@
 <h2>配送先登録/一覧</h2>
 
 
-<%= form_with model:@adress, url: '/public/adress', method: :post do |f| %>
+<%= form_with model:@address, url: public_addresses_path, method: :post do |f| %>
 
 <table>
   <tr>
@@ -10,7 +10,7 @@
   </tr>
   <tr>
    <th>住所</th>
-   <td> <%= f.text_field :address %> </td>
+   <td> <%= f.text_area :address %> </td>
   </tr>
   <tr>
     <th>宛名</th>
@@ -24,7 +24,7 @@
 
 
 
- <table>
+<table>
  <thead>
  <tr>
   <th >郵便番号</th>
@@ -34,22 +34,19 @@
  </tr>
  </thead>
 
- <tbody>
-　<% @adress.each do |adress| %>
- 　<tr>
- 　 <td></td>
- 　  <td><%= adresse %></td>
-    <td><%= adress.name %></td>
-    <td></td>
-    <td><span class="space"><%= link_to "編集", edit_public_adress_path(adress.id) %></td></span>
-
+ <% @addresses.each do |address| %>
+  <tbody>
+   <tr>
+    <td><%= address.postal_code %></td>
+    <td><%= address.address%></td>
+    <td><%= address.name %></td>
+    <td>
+     <%= f.hidden_field :customer_id, :value => @customer.id %>
+    </td>
    </tr>
-　</tbody>
+  </tbody>
  <% end %>
- </table>
-</div>
-
-
+</table>
 
 
 
