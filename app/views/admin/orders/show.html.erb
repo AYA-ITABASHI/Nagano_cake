@@ -1,23 +1,79 @@
-<h2>注文履歴一覧</h2>
+<h2>注文履歴詳細</h2>
 
 <table>
- <thead>
+ <tr>
+  <th>購入者</th>
+  <td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
+ </tr>
+ <tr>
+  <th>購入日時</th>
+  <td><%= @order.created_at.to_s(:datetime_jp) %></td>
+ </tr>
+ <tr>
+  <th>配送先</th>
+  <td>
+   <%=  @order.delivery_postal_code %>
+   <%= @order.delivery_address %>
+   <%= @order.delivery_name %>
+  </td>
+ </tr>
+ <tr>
+  <th>支払い方法</th>
+  <td><%= @order.payment_i18n %></td>
+ </tr>
+ <tr>
+  <th>注文ステータス</th>
+  <%= form_with model:@order, url:admin_order_path(@order.id), method: :patch do |f| %>
+  <td>
+    <%= f.select :order_status, Order.order_statuses_i18n.invert %>
+   <%= f.submit "更新" %></td>
+  <% end %>
+ </tr>
+
+
+ <table>
+  <% @total=0 %>
+  <thead>
    <tr>
-     <th>購入日時</th>
-     <th>購入者</th>
-     <th>注文個数</th>
-     <th>注文ステータス</th>
+    <th>商品名</th>
+    <th>単価（税込）</th>
+    <th>数量</th>
+    <th>小計</th>
+    <th>製作ステータス</th>
    </tr>
- </thead>
- 
- <tbody>
-  <%= @orders.each do |orders| %>
+  </thead>
+  <% @order_details.each do |orders| %>
+  <tbody>
    <tr>
-    <td><%= </td>
-    <td></td> 
-    <td></td> 
-    <td></td> 
-    
+    <td><%= orders.item.name %> </td>
+    <td><%= orders.unit_price %></td>
+    <td><%= orders.amount %></td>
+    <td><%= orders.unit_price*orders.amount %></td>
+    <%= form_with model:orders, url:admin_order_detail_path(orders.id), method: :patch do |f| %>
+    <td>
+      <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
+      <%= f.submit "更新" %>
+    <% end %>
+    </td>
    </tr>
- </tbody>
-</table>
+  </tbody>
+  </table>
+  <% @total += orders.unit_price*orders.amount %>
+ <% end %>
+ <table>
+<tr>
+  <th>商品合計</th>
+  <td>
+
+   <%= @total %>
+  </td>
+ </tr>
+ <tr>
+  <th>配送料</th>
+  <td><%= @order.shipping_fee %></td>
+ </tr>
+ <tr>
+  <th>請求金額合計</th>
+  <td><%= @order.amount_billed %></td>
+ </tr>
+ </table>

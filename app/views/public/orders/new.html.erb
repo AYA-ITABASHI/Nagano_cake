@@ -1,43 +1,76 @@
 <h1>注文情報入力</h1>
 
 <h5>支払方法入力</h5>
- <% form_with model:@order, url:public_orders_path, method: :post do |f| %>
- <%= f.radio_button :payment_method, "credit_card" %>
-  <%= f.label :payment_method_credit_card, "クレジットカード" %>
+ <%= form_with model:@order, url: public_orders_confirm_path, method: :post do |f| %>
+ <%= f.radio_button :payment, "credit_card" %>
+  <%= f.label :payment_credit_card, "クレジットカード" %>
 
-  <%= f.radio_button :payment_method, "transfer" %>
-  <%= f.label :payment_method_transfer, "銀行振込" %>
+  <%= f.radio_button :payment, "transfer" %>
+  <%= f.label :payment_transfer, "銀行振込" %>
 
 
 
 <h5>お届け先住所</h5>
+ <table>
+ <tr>
+  <th>
+   <%= f.radio_button :address_method, "0" %>
+   <%= f.label :address_method, "ご自身の住所" %>
+   <%= current_customer.address %>
+   <%= current_customer.last_name %>
+   <%= current_customer.first_name %>
+  </th>
+ </tr>
+ <tr>
+  <th>
+   <%= f.radio_button :address_method, "1" %>
+   <%= f.label :address_method, "登録済み住所から選択" %>
+  </th>
+  <td>
   <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
-   <h5>新しいお届け先</h5>
-   <table>
-    <tr>
-    <th>
-     <div class="field">
-      <%= f.label "郵便番号（ハイフンなし）" %>
-      <%= f.text_field  :postal_code, placeholder: "0000000" %>
-     </div>
-     </th>
-    </tr>
+  </td>
+ </tr>
+ <tr>
+  <th>
+   <%= f.radio_button :address_method, "2" %>
+   <%= f.label :address_method, "新しいお届け先" %>
+  </th>
+ </tr>
+ <tr>
+ <%= form_with model:@address, url: public_orders_confirm_path, method: :post do |f| %>
+ <th>
+   <div class="field">
+    <%= f.label "郵便番号（ハイフンなし）" %>
+    <%= f.text_field :postal_code, placeholder: "0000000" %>
+   </div>
+  </th>
+ </tr>
 
-    <tr><th></th>
-     <th>
-     <div class="field">
+ <tr>
+  <th>
+   <div class="field">
       <%= f.label "住所" %>
       <%= f.text_area  :address, placeholder: "東京都渋谷区代々木神園町0-0" %>
      </div>
      </th>
-    </tr>
-    <tr>
-     <th>宛名</th>
-     <th>
-      <div class="field">
-       <%= f.text_field :name, placeholder: "令和 道子" %>
-      </div>
-     </th>
-    </tr>
-   </table>
-  <% end %>
+ </tr>
+ <tr>
+  <th>宛名</th>
+  <th>
+   <div class="field">
+    <%= f.text_field :name, placeholder: "令和 道子" %>
+   </div>
+  </th>
+ <% end %>
+ </tr>
+
+     <%= f.hidden_field :customer_id, :value => current_customer.id %>
+
+  <tr>
+   <th>
+    <%= f.submit "確認画面へすすむ" %>
+   </th>
+  </tr>
+
+ </table>
+<% end %>

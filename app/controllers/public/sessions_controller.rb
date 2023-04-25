@@ -24,7 +24,9 @@ class Public::SessionsController < Devise::SessionsController
   return if !@customer
 
   if @customer.valid_password?(params[:customer][:password])
-
+    if @customer.is_deleted
+      redirect_to  new_customer_registration_path
+    end
   end
   end
   # before_action :configure_sign_in_params, only: [:create]

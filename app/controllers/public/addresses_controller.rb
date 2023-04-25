@@ -1,7 +1,7 @@
 class Public::AddressesController < ApplicationController
   def index
     @address=Address.new
-    @addresses=current_customer.address
+    @addresses=current_customer.addresses
 
   end
 
@@ -11,14 +11,14 @@ class Public::AddressesController < ApplicationController
 
   def create
     @address=Address.new(address_params)
-    @addresses.customer_id=current_customer.id
+    @address.customer_id=current_customer.id
     @address.save
     redirect_to public_addresses_path
   end
 
   def update
     @address=Address.find(params[:id])
-    @address.update
+    @address.update(address_params)
     redirect_to public_addresses_path
   end
 

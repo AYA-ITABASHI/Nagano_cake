@@ -1,10 +1,8 @@
 <h2>ログイン</h2>
-<table>
- <tr>
-  <th>会員の方はこちらからログイン</th><th></th>
- </tr>
- <tr>
+<th>会員の方はこちらからログイン</th><th></th>
  <%= form_with model:@customer, url: customer_session_path do |f| %>
+ <table>
+ <tr>
   <th>
   <div class="field">
     <%= f.label :email %>
@@ -27,8 +25,8 @@
   </div>
   </th>
  </tr>
-<% end %>
-</table>
+ </table>
+ <% end %>
 
 <h4>会員登録がお済みでない方</h4>
 <a href="/customers/sign_up">こちら</a>  から新規登録してください

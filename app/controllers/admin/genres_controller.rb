@@ -7,7 +7,7 @@ class Admin::GenresController < ApplicationController
   def create
     @genres=Genre.new(genre_params)
     @genres.save
-    render :index
+    redirect_to admin_genres_path
 
 
   end
@@ -18,7 +18,8 @@ class Admin::GenresController < ApplicationController
 
   def update
    @genre=Genre.find(params[:id])
-   @genre.update(params.update)
+   @genre.update(genre_params)
+   redirect_to admin_genres_path
   end
 
 

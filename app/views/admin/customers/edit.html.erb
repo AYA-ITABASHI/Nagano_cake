@@ -1,6 +1,6 @@
 <h2><%= @customer.last_name %><%= @customer.first_name %>の会員情報編集</h2>
 
-<%= form_with model: @customer, url: admin_customer_path(@customer.id) do |f| %>
+<%= form_with model:@customer, url: admin_customer_path(@customer.id) do |f| %>
 
  <table>
   <tr>
@@ -45,7 +45,7 @@
   <tr><th>住所</th>
    <th>
    <div class="field">
-    <%= f.text_area  :adress %>
+    <%= f.text_area  :address %>
    </div>
    </th>
   </tr>
@@ -68,11 +68,11 @@
   </tr>
 　<tr>
 　<th>
-　<%= f.radio_button :is_deleted, :false %>
-  <%= f.label :is_deleted_method,"有効" %>
+　<%= f.radio_button :is_deleted, false %>
+  <%= f.label :is_deleted, "有効" %>
 
-  <%= f.radio_button :is_deleted, "true" %>
-  <%= f.label :is_deleted_method, "退会" %>
+  <%= f.radio_button :is_deleted, true %>
+  <%= f.label :is_deleted, "退会" %>
 　</th>
 　</tr>
 　<tr>

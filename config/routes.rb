@@ -3,13 +3,18 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :orders, only:[:show, :update]
   end
+
+   namespace :admin do
+    resources :order_details, only:[:update]
+  end
+
   namespace :admin do
     resources :customers, only:[:index, :show, :edit, :update
     ]
    end
 
   namespace :admin do
-    resources :genres, only:[:index, :create, :edit]
+    resources :genres, only:[:index, :create, :edit, :update]
   end
 
   namespace :admin do
@@ -19,10 +24,12 @@ Rails.application.routes.draw do
     root to:'homes#top'
   end
   namespace :public do
-    resources :addresses, only:[:index, :create, :edit, :update, :destroy]  
+    resources :addresses, only:[:index, :create, :edit, :update, :destroy]
   end
   namespace :public do
-    resources :orders, only:[:new, :index, :show, :complete, :confirm, :create]
+    resources :orders, only:[:new, :index, :show, :create]
+    post "orders/confirm" => "orders#confirm"
+    get "orders/complete" => "orders#complete"
   end
 
  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -43,7 +50,9 @@ Rails.application.routes.draw do
 
   namespace :public do
   get 'customers/mypage' => 'customers#show', as:'mypage'
-  resources :customers, only:[:edit, :update, :unsubscribe, :withdrawal]
+  get 'customers/unsubscribe' => 'customers#unsubscribe', as:'unsubscribe'
+  patch 'customers/withdrawal' => 'customers#withdrawal'
+  resources :customers, only:[:edit, :update]
   end
 
   namespace :public do

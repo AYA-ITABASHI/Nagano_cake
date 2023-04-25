@@ -20,7 +20,9 @@
    <th></th>
    <th>税込価格
    （税抜価格）</th>
-   <td><%= @item.price %></td>
+   <td>
+    <%= @item.with_tax_price %>(<%= @item.price %>)円
+   </td>
   </tr>
    <tr>
    <th></th>

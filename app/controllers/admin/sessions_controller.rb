@@ -4,7 +4,7 @@ class Admin::SessionsController < Devise::SessionsController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    about_path
+    admin_root_path
   end
 
    def configure_permitted_parameters

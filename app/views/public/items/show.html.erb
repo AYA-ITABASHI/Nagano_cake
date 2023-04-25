@@ -1,5 +1,5 @@
 <h2>商品詳細</h2>
-
+<%= form_with model: @cart_items, url: public_cart_items_path, method: :post do |f| %>
 <table>
 
   <tr>
@@ -22,8 +22,8 @@
      <%= @item.price %>
     </td>
   </tr>
-  <%= form_with model: @cart_items, url: public_cart_items_path, method: :post do |f| %>
-    <tr>
+
+  <tr>
     <th></th>
      <%= f.hidden_field :customer_id, :value => current_customer.id %>
      <%= f.hidden_field :item_id, :value => @item.id %>
@@ -34,5 +34,5 @@
      <%= f.submit "カートに入れる" %>
     </th>
   </tr>
-  <% end %>
-</table>
+ </table>
+ <% end %>

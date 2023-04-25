@@ -9,15 +9,22 @@
      <th>注文ステータス</th>
    </tr>
  </thead>
- 
+
  <tbody>
-  <%= @orders.each do |orders| %>
+  <% @orders.each do |orders| %>
    <tr>
-    <td><%= @orders</td>
-    <td><%= @orders.customer.name %></td> 
-    <td><%= </td> 
-    <td></td> 
-    
+    <td>
+     <%= link_to  admin_order_path(orders.id) do %>
+       <%= l orders.created_at, format: :default %>
+     <% end %>
+    </td>
+    <td>
+     <%= orders.customer.last_name %>
+     <%= orders.customer.first_name %>
+    </td>
+    <td><%= orders.order_details.sum(&:amount) %></td>
+    <td><%= orders.order_status_i18n %></td>
+  <% end %>
    </tr>
  </tbody>
 </table>

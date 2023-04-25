@@ -14,12 +14,21 @@
 
    <% @orders.each do |orders| %>
    <tbody>
-     <td><%= orders.created_at  %></td>
-     <td><%= orders %></td>
-     <td><%= orders.cart_items %></td>
-     <td><%= orders %></td>
-     <td><%= orders.order_status %></td>
-     <th><%= link_to "表示する", public_order_path(orders) %></th>
+     <td><%= l orders.created_at, format: :short %></td>
+     <td>
+      <%= orders.delivery_postal_code %>
+      <%= orders.delivery_name %>
+     <%= orders.delivery_address %>
+     </td>
+      <% orders.order_details.each do |details| %>
+      <td><%= details.item.name %></td>
+      <% end %>
+     <td><%= orders.amount_billed %></td>
+     <td><%= orders.order_status_i18n %></td>
+     <td></td>
+
+     <th><%= link_to "表示する", public_order_path(orders.id) %></th>
+
    </tbody>
    <% end %>
  </table>
