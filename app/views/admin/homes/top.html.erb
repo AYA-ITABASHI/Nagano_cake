@@ -1,30 +1,40 @@
-<h1>注文履歴一覧</h1>
+<div class="container">
+  <div class="row justify-content-start">
+    <div class="col-align-self-start  rounded pl-6 my-4">
+     <h4 style="background-color: #dcdcdc">注文履歴一覧</h4>
+    </div>
+　</div>
 
-<table>
- <thead>
-   <tr>
-     <th>購入日時</th>
-     <th>購入者</th>
-     <th>注文個数</th>
-     <th>注文ステータス</th>
-   </tr>
- </thead>
+  <div class="row-fluid justify-content-start">
 
- <tbody>
-  <% @orders.each do |orders| %>
-   <tr>
-    <td>
-     <%= link_to  admin_order_path(orders.id) do %>
-       <%= l orders.created_at, format: :default %>
+   <table  >
+    <thead>
+     <tr class="table-secondary">
+      <th class="col-md-2 px-0">購入日時</th>
+      <th class="col-md-3 px-0">購入者</th>
+      <th class="col-md-3 px-0">注文個数</th>
+      <th class="col-md-5 px-0">注文ステータス</th>
+     </tr>
+    </thead>
+
+    <tbody>
+     <% @orders.each do |orders| %>
+     <tr>
+      <td class="col-sm-4 px-0">
+       <%= link_to  admin_order_path(orders.id), class: "custom-link" do %>
+        <%= l orders.created_at, format: :default %>
+       <% end %>
+      </td>
+      <td class="col-sm-2 px-0">
+       <%= orders.customer.last_name %>
+       <%= orders.customer.first_name %>
+      </td>
+      <td class="col-sm-2 px-0"><%= orders.order_details.sum(&:amount) %></td>
+      <td class="col-sm-4 px-0"><%= orders.order_status_i18n %></td>
      <% end %>
-    </td>
-    <td>
-     <%= orders.customer.last_name %>
-     <%= orders.customer.first_name %>
-    </td>
-    <td><%= orders.order_details.sum(&:amount) %></td>
-    <td><%= orders.order_status_i18n %></td>
-  <% end %>
-   </tr>
- </tbody>
-</table>
+     </tr>
+    </tbody>
+  </table>
+  </div>
+ </div>
+<%= paginate @orders %>

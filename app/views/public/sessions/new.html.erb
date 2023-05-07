@@ -1,32 +1,48 @@
-<h2>ログイン</h2>
-<th>会員の方はこちらからログイン</th><th></th>
- <%= form_with model:@customer, url: customer_session_path do |f| %>
- <table>
- <tr>
-  <th>
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2 text-center rounded my-5">
+     <h4 style="background-color: #dcdcdc">ログイン</h4>
+    </div>
   </div>
-  </th>
- </tr>
- <tr>
-  <th>
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-  </th>
- </tr>
- <tr>
-  <th>
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-  </th>
- </tr>
- </table>
- <% end %>
 
-<h4>会員登録がお済みでない方</h4>
-<a href="/customers/sign_up">こちら</a>  から新規登録してください
+  <div class="row">
+   <div class="col-lg-5 text-center" >
+    <h4 style="background-color: #dcdcdc">
+      会員の方はこちらからログイン
+    </h4>
+   </div>
+  </div>
+   <%= form_with model:@customer, url: customer_session_path do |f| %>
+   <div class="field">
+    <div class="row justify-content-center ml-5 my-3">
+     <label for="email" class="col-md-2 col-form-label">メールアドレス</label>
+     <%= f.text_field :email,  autocomplete: "email", class: "col-md-6", style:"width: 200px;" %>
+    </div>
+   </div>
+   <div class="field ">
+    <div class="row justify-content-center ml-5">
+     <label for="email" class="col-md-2 col-form-label">パスワード</label>
+      <%= f.password_field :password, autocomplete: "current-password",class: "col-md-6", style:"width: 200px;"  %>
+    </div>
+   </div>
+   <div class="row justify-content-start">
+    <div class="col-md-6 d-flex justify-content-end ">
+     <div class="actions ">
+      <input class="btn btn-primary btn-lg m-4" type="submit" value=" ログイン ">
+     </div>
+    </div>
+   <% end %>
+   </div>
+
+
+   <div class="row mt-4">
+    <div class="col-lg-4 text-center px-0" >
+     <h4 style="background-color: #dcdcdc">会員登録がお済みでない方</h4>
+      <div class="row ">
+       <div class="col-md-12 mx-5 " >
+        <a href="/customers/sign_up">こちら</a>  から新規登録してください
+       </div>
+      </div>
+    </div>
+   </div>
+</div>

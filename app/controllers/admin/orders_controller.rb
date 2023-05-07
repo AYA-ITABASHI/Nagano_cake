@@ -10,8 +10,8 @@ class Admin::OrdersController < ApplicationController
     @order=Order.find(params[:id])
      @order.update(order_params)
     if @order.order_status == "payment_confirm"
-      @order.order_details.update_all(making_status: "production")
-      @order.update(order_status: "production")
+      @order.order_details.update_all(making_status: "waiting_for_production")
+
     end
     redirect_to admin_order_path(@order)
   end

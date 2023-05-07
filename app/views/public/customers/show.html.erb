@@ -1,36 +1,65 @@
-<h1>マイページ</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3   rounded  m-4">
+     <h4 class="text-center", style="background-color: #dcdcdc">マイページ</h4>
+    </div>
+  </div>
+ <div class="row">
+  <div class="col-md-2  rounded my-2">
+  <h5>登録情報</h5>
+  </div>
+  <div class="  rounded  my-2">
+   <%= link_to  edit_public_customer_path(@customer.id), class: "btn btn-success" do %>
+    <%= "編集する" %>
+   <% end %>
+  </div>
+ </div>
 
-<h3>登録情報</h3><span><%= link_to "編集する", edit_public_customer_path(@customer.id) %></span>
-<table>
+<div class="row">
+<table class="table table-bordered mx-2">
  <tr>
-  <th>氏名</th>
-  <td><%= @customer.last_name %>
+  <th class="col-md-1" style="background-color: #dcdcdc">氏名</th>
+  <td class="col-md-4"><%= @customer.last_name %>
       <%= @customer.first_name %>
   </td>
  </tr>
  <tr>
-  <th>カナ</th>
-  <td><%= @customer.last_name_kana %>
+  <th class="col-md-1" style="background-color: #dcdcdc">カナ</th>
+  <td class="col-md-4"><%= @customer.last_name_kana %>
       <%= @customer.first_name_kana %>
   </td>
  </tr>
  <tr>
-  <th>郵便番号</th>
-  <td><%= @customer.postal_code %></td>
+  <th class="col-md-1" style="background-color: #dcdcdc">郵便番号</th>
+  <td class="col-md-4"><%= @customer.postal_code %></td>
  </tr>
  <tr>
-  <th>住所</th>
-  <td><%= @customer.address %></td>
+  <th class="col-md-1" style="background-color: #dcdcdc">住所</th>
+  <td class="col-md-4"><%= @customer.address %></td>
  </tr>
  <tr>
-  <th>電話番号</th>
-  <td><%= @customer.telephone_number %></td>
+  <th class="col-md-1" style="background-color: #dcdcdc">電話番号</th>
+  <td class="col-md-4"><%= @customer.telephone_number %></td>
  </tr>
  <tr>
-  <th>メールアドレス</th>
-  <td><%= @customer.email %></td>
+  <th class="col-md-1" style="background-color: #dcdcdc">メールアドレス</th>
+  <td class="col-md-4"><%= @customer.email %></td>
  </tr>
 </table>
-
-<h3>配送先</h3><span><%= link_to "一覧を見る", public_addresses_path %></span>
-<h3>注文履歴</h3><span><%= link_to "一覧を見る", public_orders_path %></span>
+</div>
+<div class="row">
+  <div class="col-md-2  rounded my-3 mr-3">
+   <h5>配送先</h5>
+  </div>
+  <div class="  rounded  my-2">
+   <%= link_to "一覧を見る", public_addresses_path, class: "btn btn-primary btn-lg" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2  rounded my-2">
+   <h5>注文履歴</h5>
+  </div>
+  <div class="col-md-2  rounded my-2">
+   <%= link_to "一覧を見る", public_orders_path, class: "btn btn-primary btn-lg" %>
+  </div>
+</div>

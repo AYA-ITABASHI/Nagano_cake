@@ -1,20 +1,25 @@
-<h2>会員情報編集</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 text-center rounded my-4 ">
+     <h4 style="background-color: #dcdcdc">会員情報編集</h4>
+    </div>
+  </div>
 
-
-<%= form_with model: @customer, url: public_customer_path do |f| %>
+  <div class="row justify-content-start">
+  <%= form_with model: @customer, url: public_customer_path do |f| %>
 
  <table>
   <tr>
-   <th> <%= f.label "名前" %></th>
-   <td>
+   <th class="col-md-3 p-2 ">名前</th>
+   <td class="col-md-4 p-2 ">
     <%= f.text_field :last_name %>
     <%= f.text_field :first_name %>
    </td>
   </tr>
 
   <tr>
-   <th><%= f.label "フリガナ" %></th>
-   <td>
+   <th class="col-md-3 p-2 ">フリガナ</th>
+   <td class="col-md-4 p-2 ">
     <%= f.text_field :last_name_kana %>
     <%= f.text_field  :first_name_kana %>
    </td>
@@ -23,39 +28,41 @@
   </tr>
 
   <tr>
-   <th><%= f.label "郵便番号" %></th>
-   <th>
+   <th class="col-md-3 p-2 ">郵便番号</th>
+   <td class="col-md-4 p-2 ">
     <%= f.text_field  :postal_code %>
-   </th>
+   </td>
   </tr>
 
   <tr>
-   <th><%= f.label "住所" %></th>
-   <th>
-    <%= f.text_area  :address %>
-   </th>
+   <th class="col-md-3 p-2 ">住所</th>
+   <td class="col-md-4 p-2 ">
+    <%= f.text_area  :address, style:"width: 450px; height: 30px" %>
+   </td>
   </tr>
 
   <tr>
-   <th> <%= f.label "電話番号" %></th>
-   <th>
+   <th class="col-md-3 p-2 ">電話番号</th>
+   <td class="col-md-4 p-2 ">
     <%= f.text_field  :telephone_number %>
-   </th>
+   </td>
   </tr>
 
   <tr>
-   <th><%= f.label "メールアドレス" %></th>
-   <th>
+   <th class="col-md-5 p-2">メールアドレス</th>
+   <td class="col-md-4 p-2 ">
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-   </th>
+   </td>
   </tr>
 
-  <tr><th></th>
-   <th>
-   <div class="actions">
-    <%= f.submit "編集内容を保存" %>
-   </div>
-   <%= link_to "退会する", public_unsubscribe_path %>
+  <tr>
+   <th></th>
+   <th class="col-md-4 m-2">
+     <input class="btn btn-success" type="submit" value="編集内容を保存">
+
+    <%= link_to  public_unsubscribe_path,  class: "btn btn-danger " do %>
+     <%= "退会する" %>
+    <% end %>
    </th>
   </tr>
  </table>

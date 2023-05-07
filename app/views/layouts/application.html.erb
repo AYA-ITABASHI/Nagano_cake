@@ -5,76 +5,81 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+   <body class="d-flex flex-column vh-100">
+   <header class="shadow-sm ">
+      <nav class="navbar  navbar-light">
+        <div class="container-fluid">
+          <a class= "h4 text-dark text-decoration-none" href="/" ><%= "Logo" %></a>
 
-  <body>
-   <header>
-    <% if admin_signed_in? %>
-     <% if request.fullpath.include? "/admin" %>
-       <li>
-        <%= link_to "注文履歴一覧", admin_root_path %>
-       </li>
-       <li>
-        <%= link_to "会員一覧", admin_customers_path %>
-       </li>
-       <li>
-        <%= link_to "商品一覧", admin_items_path %>
-       </li>
-       <li>
-        <%= link_to "ジャンル一覧", admin_genres_path %>
-       </li>
-       <li>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-       </li>
-      <% else %>
-       <li>
-        <%= link_to "マイページ", public_mypage_path %>
-       </li>
-       <li>
-        <%= link_to "カート", public_cart_items_path %>
-       </li>
-       <li>
-        <%= link_to "商品一覧",admin_items_path %>
-       </li>
+        <div class="text-right ">
+          <% if admin_signed_in? %>
+          <% if request.fullpath.include? "/admin" %>
+          <button type="button" class="btn btn-outline-dark btn-sm mr-3">
+           <%= link_to "注文履歴一覧", admin_root_path, class: 'nav-link text-dark' %>
+          </button>
+          <button type="button" class="btn btn-outline-dark btn-sm mr-3">
+           <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-dark' %>
+          </button>
+          <button type="button" class="btn btn-outline-dark btn-sm mr-3">
+           <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark' %>
+          </button>
+          <button type="button" class="btn btn-outline-dark btn-sm mr-3">
+           <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>
+          </button>
+          <button type="button" class="btn btn-outline-dark btn-sm">
+           <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+          </button>
+          <% else %>
+          <button type="button" class="btn btn-outline-dark btn-sm mr-3">
+           <%= link_to "マイページ", public_mypage_path,class: 'nav-link text-dark' %>
+          </button>
+          <button type="button" class="btn btn-outline-dark btn-sm mr-3">
+           <%= link_to "カート", public_cart_items_path, class: 'nav-link text-dark' %>
+          </button>
+          <button type="button" class="btn btn-outline-dark btn-sm mr-3">
+           <%= link_to "商品一覧",admin_items_path, class: 'nav-link text-dark' %>
+          </button>
+          <button type="button" class="btn btn-outline-dark btn-sm">
+           <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
+          </button>
+          <% end %>
 
-       <li>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-       </li>
-      <% end %>
-
-    <% else if customer_signed_in? %>
-      <li>
-        <%= link_to "マイページ", public_mypage_path %>
-      </li>
-      <li>
-        <%= link_to "カート", public_cart_items_path %>
-      </li>
-      <li>
-        <%= link_to "商品一覧", public_items_path %>
-      </li>
-
-      <li>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "About", about_path %>
-      </li>
-      <li>
-        <%= link_to "商品一覧", public_items_path %>
-      </li>
-      <li>
-        <%= link_to "新規登録", new_customer_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_customer_session_path %>
-      </li>
-     <% end %>
-    <% end %>
-  </header>
+          <% else if customer_signed_in? %>
+          <button type="button" class="btn btn-outline-dark btn-sm mr-3">
+           <%= link_to "マイページ", public_mypage_path, class: 'nav-link text-dark' %>
+          </button>
+          <button type="button" class="btn btn-outline-dark btn-sm mr-3">
+           <%= link_to "カート", public_cart_items_path, class: 'nav-link text-dark' %>
+          </button>
+          <button type="button" class="btn btn-outline-dark btn-sm mr-3">
+           <%= link_to "商品一覧", public_items_path, class: 'nav-link text-dark' %>
+          </button>
+          <button type="button" class="btn btn-outline-dark btn-sm">
+           <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
+          </button>
+          <% else %>
+          <button type="button" class="btn btn-outline-dark btn-sm mr-3">
+           <%= link_to "About", about_path,  class: 'nav-link text-dark' %>
+          </button>
+          <button type="button" class="btn btn-outline-dark btn-sm mr-3">
+           <%= link_to "商品一覧", public_items_path,  class: 'nav-link text-dark' %>
+          </button>
+          <button type="button" class="btn btn-outline-dark btn-sm mr-3">
+           <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>
+          </button>
+          <button type="button" class="btn btn-outline-dark btn-sm">
+           <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
+          </button>
+          <% end %>
+         <% end %>
+         </ul>
+        </div>
+       </nav>
+   </header>
     <%= yield %>
   </body>
 </html>

@@ -1,57 +1,66 @@
-<h1>商品新規登録</h1>
-<%= form_with model: @item, url: admin_item_path(@item.id),  method: :post do |f| %>
-　<table>
-　  <tr>
-　   <th>商品画像</th>
-　   <th>
-　    <div class="field">
+<div class="container">
+  <div class="row justify-content-start">
+    <div class="col-sm-3  rounded  m-4">
+     <h4 class="text-center", style="background-color: #dcdcdc">商品新規登録</h4>
+    </div>
+  </div>
+
+  <div class="row-fluid justify-content-center">
+
+   <%= form_with model: @item, url: admin_items_path,  method: :post do |f| %>
+
+   <table >
+    <tr >
+　   <th class="col-md-2">商品画像</th>
+　   <td class="col-md-8 p-2" >
        <%= f.file_field :image, accept: "image/*" %>
-　    </div></th>
+　   </td>
 　  </tr>
 　  <tr>
-　   <th>商品名</th>
-　   <th>
-　   <div class="field">
-　      <%= f.text_field :name, placeholder: "商品名" %>
-　    </div></th></th>
+　   <th class="col-md-2 ">商品名</th>
+　   <td class="col-md-8 p-2">
+　     <%= f.text_field :name, placeholder: "商品名", style:"width: 400px;" %>
+　   </td>
 　  </tr>
 　  <tr>
-　   <th>商品説明</th>
-　   <th>
-　    <div class="field">
-　      <%= f.text_area :introduction, placeholder: "ここに説明文を記述します" %>
-　    </div>
-　   </th>
+　   <th class="col-md-2 ">商品説明</th>
+　   <td class="col-md-8 p-2">
+　    <%= f.text_area :introduction, placeholder: "ここに説明文を記述します",style:"width: 400px; height: 200px;" %>
+　   </td>
 　  </tr>
 　  <tr>
-　   <th>ジャンル</th>
-　   <th>
-　     <div class="field">
-　       <%= f.collection_select :genre_id, Genre.all, :id, :name %>
-　     </div>
-　   </th>
+　   <th class="col-md-2">ジャンル</th>
+　   <td class="col-md-8 p-2">
+　    <%= f.collection_select :genre_id,  Genre.all, :id, :name,{ prompt: "--選択してください--" }, { class: "form-select", style: "width:400px;" } %>
+　   </td>
 　  </tr>
 　  <tr>
-　   <th>税抜価格</th>
-　   <th>
-　     <div class="field">
-　      <%= f.text_field :price, placeholder: "1000" %>円
-　    </div>
-　   </th>
+　   <th class="col-md-2">税抜価格</th>
+　   <td class="col-md-8 p-2">
+　    <%= f.text_field :price, placeholder: "1000", style: "width:400px;" %>円
+　   </td>
 　  </tr>
 　  <tr>
-　   <th>販売ステータス</th>
-　   <th>
+　   <th class="col-md-2">販売ステータス</th>
+　   <td class="col-md-8 p-2">
 　    <%= f.radio_button :is_active_method, "販売中" %>
       <%= f.label :is_activ_method_true, "販売中" %>
 
       <%= f.radio_button :is_active_method, "販売停止中" %>
       <%= f.label :is_activ_method_false, "販売停止中" %>
+　   </td>
+　  </tr>
+　  <tr>
+     <th></th>
+　   <th class="col-md-2  justify-content-center">
+　    <div class="actions">
+       <%= f.submit "新規登録", class: "btn btn-success btn-lg"%>
+      </div>
 　   </th>
 　  </tr>
-　</table>
+　 </table>
 
-　  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
- <% end %>
+　<% end %>
+　</div>
+ </div>
+</div>

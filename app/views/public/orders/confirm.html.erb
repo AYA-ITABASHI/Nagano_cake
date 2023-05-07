@@ -1,67 +1,100 @@
-<h1>注文情報確認</h1>
- <table>
-  <tr>
-   <th>支払い方法</th>
-   <td><%= @order.payment_i18n %></td>
-  </tr>
-  <tr>
-   <th>お届け先</th>
-   <td>
-     <%=  @order.delivery_postal_code %>
-     <%= @order.delivery_address %>
-     <%= @order.delivery_name %>
+<div class="container">
+  <div class="row justify-content-start">
+    <div class="col-sm-3  rounded  m-4">
+     <h4 class="text-center", style="background-color: #dcdcdc">注文情報確認</h4>
+    </div>
+  </div>
 
-   </td>
-  </tr>
 
+
+ <div style="display: flex">
+  <table class="table table-bordered mx-2">
+   <thead  style="background-color: #dcdcdc">
+    <th  class="col-md-5">商品名</th>
+    <th class="col-md-4">単価（税込み）</th>
+    <th class="col-md-2">数量</th>
+    <th class="col-md-3">小計</th>
+   </thead>
+   <% @amount_billed =0 %>
+   <% @cart_items.each do |cart_items| %>
+   <tbody>
+    <td>
+     <%= image_tag cart_items.item.get_image(50,50) %>
+     <%= cart_items.item.name %>
+    </td>
+    <td><%= cart_items.item.with_tax_price.to_s(:delimited)%></td>
+    <td><%= cart_items.amount %></td>
+    <td><%= cart_items.subtotal.to_s(:delimited) %></td>
+     <% @amount_billed += cart_items.subtotal %>
+   </tbody>
+
+   <% end %>
+  </table>
+
+   <table class="table table-bordered">
+    <tr>
+     <th class="col-md-3" style="background-color: #dcdcdc">送料</th>
+     <td ><%= @shipping_fee %></td>
+    </tr>
+    <tr>
+     <th class="col-md-3" style="background-color: #dcdcdc">商品合計</th>
+     <td >
+
+      <%= @amount_billed.to_s(:delimited) %>
+     </td>
+    </tr>
+    <tr>
+     <th class="col-md-3"  style="background-color: #dcdcdc">請求金額</th>
+     <td>
+      <% @total= @amount_billed+@shipping_fee %>
+      <%= @total.to_s(:delimited) %>
+     </td>
+    </tr>
+   </table>
+  </div>
+
+
+
+  <div class="row">
+   <table>
+    <tr>
+     <th class="font-weight-bold">支払い方法</th>
+     <td ><%= @order.payment_i18n %></td>
+    </tr>
+    <tr>
+     <th class="font-weight-bold">お届け先</th>
+     <td  style="width: 450px; height: 30px;"  >
+      〒<%=  @order.delivery_postal_code %>
+      <%= @order.delivery_address %>
+     </td>
+    </tr>
+    <tr>
+     <th></th>
+     <td>
+      <%= @order.delivery_name %>
+     </td>
+    </tr>
+
+  </div>
+
+
+ <tr>
+  <th class="col-sm-3 " >
+   <th class="text-center ">
+     <%= form_with model:@order, url:public_orders_path, method: :post do |f| %>
+
+      <%= f.hidden_field :payment, :value => @order.payment %>
+      <%= f.hidden_field :delivery_postal_code, :value => @order.delivery_postal_code %>
+      <%= f.hidden_field :delivery_address, :value => @order.delivery_address %>
+      <%= f.hidden_field :delivery_name, :value => @order.delivery_name %>
+      <%= f.hidden_field :amount_billed, :value => @amount_billed + @shipping_fee %>
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <%= f.hidden_field :shipping_fee, :value => 800 %>
+      <%= f.hidden_field :order_status, :value => "waiting_for_payment" %>
+      <%= f.submit "注文を確定する",  class: "btn btn-success " %>
+     <% end %>
+   </th>
+  </th>
+ </tr>
  </table>
-
-<% @amount_billed = 0 %>
-<% @cart_items.each do |cart_items| %>
- <table>
-  <thead>
-   <th>商品名</th>
-   <th>単価（税込み）</th>
-   <th>数量</th>
-   <th>小計</th>
-  </thead>
-  <tbody>
-   <td><%= cart_items.item.name %></td>
-   <td><%= cart_items.item.with_tax_price%></td>
-   <td><%= cart_items.amount %></td>
-   <td><%= cart_items.subtotal%></td>
-
-  </tbody>
- </table>
- <% @amount_billed += cart_items.subtotal %>
-<% end %>
-
-
-<table>
- <tr>
-  <th>送料</th>
-  <td><%= @shipping_fee %></td>
- </tr>
- <tr>
-  <th>商品合計</th>
-  <td>
-   <%= @amount_billed %>
-  </td>
- </tr>
- <tr>
-  <th>請求金額</th>
-  <td><%= @amount_billed + @shipping_fee  %></td>
- </tr>
-</table>
-
- <%= form_with model:@order, url:public_orders_path, method: :post do |f| %>
-  <%= f.hidden_field :payment, :value => @order.payment %>
-  <%= f.hidden_field :delivery_postal_code, :value => @order.delivery_postal_code %>
-  <%= f.hidden_field :delivery_address, :value => @order.delivery_address %>
-  <%= f.hidden_field :delivery_name, :value => @order.delivery_name %>
-  <%= f.hidden_field :amount_billed, :value => @amount_billed + @shipping_fee %>
-  <%= f.hidden_field :customer_id, :value => current_customer.id %>
-  <%= f.hidden_field :shipping_fee, :value => 800 %>
-  <%= f.hidden_field :order_status, :value => "waiting_for_payment" %>
-  <%= f.submit "注文を確定する" %>
- <% end %>
+</div>

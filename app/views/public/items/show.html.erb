@@ -1,38 +1,42 @@
-<h2>商品詳細</h2>
-<%= form_with model: @cart_items, url: public_cart_items_path, method: :post do |f| %>
-<table>
+<div class="container">
+  <div class="row justify-content-start">
+    <div class="col-sm-3  rounded  m-4">
+     <h4 class="text-center", style="background-color: #dcdcdc">商品詳細</h4>
+    </div>
+  </div>
+  <%= form_with model: @cart_items, url: public_cart_items_path, method: :post do |f| %>
+  <div class="row align-items-center">
 
-  <tr>
-   <td>
-    <%= image_tag @item.get_image(100,100) %>
-   </td>
-   <td>
-    <%= @item.name %>
-   </td>
-  </tr>
-  <tr>
-    <th></th>
-    <td>
-     <%= @item.introduction %>
-    </td>
-  </tr>
-    <tr>
-    <th></th>
-    <td>
-     <%= @item.price %>
-    </td>
-  </tr>
+   <div class="col-md-4">
 
-  <tr>
-    <th></th>
-     <%= f.hidden_field :customer_id, :value => current_customer.id %>
-     <%= f.hidden_field :item_id, :value => @item.id %>
-    <td>
-     <%= f.select :amount, *[1..10] %>
-    </td>
-    <th>
-     <%= f.submit "カートに入れる" %>
-    </th>
-  </tr>
- </table>
- <% end %>
+      <%= image_tag @item.get_image(200,200) %>
+    </div>
+     <div class="col-md-8">
+      <table>
+       <tr>
+        <td class="m-4"><%= @item.name %></td>
+       </tr>
+       <tr>
+        <td class="m-4" ><%= @item.introduction %></td>
+       </tr>
+       <tr>
+        <td class="m-4">
+        ￥<%= @item.with_tax_price.to_s(:delimited) %>（税込）
+        </td>
+       </tr>
+
+      <tr>
+       <%= f.hidden_field :customer_id, :value => current_customer.id %>
+       <%= f.hidden_field :item_id, :value => @item.id %>
+       <td>
+        <%= f.select :amount, *[1..10],{ prompt: "--個数選択--" }, { class: "form-select", style: "width:200px;" }%>
+       </td>
+       <th>
+        <%= f.submit "カートに入れる",class: "btn btn-success" %>
+       </th>
+      </tr>
+     </table>
+     </div>
+    <% end %>
+   </div>
+  </div>

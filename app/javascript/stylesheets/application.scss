@@ -1,0 +1,38 @@
+@import '~bootstrap/scss/bootstrap';
+
+.custom-link{
+  color: black;
+
+}
+
+.button-link{
+  color: white;
+}
+
+.btn-01{
+box-shadow: 10px 10px 10px #a9a9a9;
+}
+
+.btn01:hover {
+
+	/*--水平方向 垂直方向 色--*/
+	box-shadow: 10px 10px 10px #a9a9a9;
+}
+
+.item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item-details {
+
+  text-align: center;
+  margin-top: 10px;
+}
+
+.title2{
+  border-left:none;
+  border-right:none;
+  border-top:none;
+}
